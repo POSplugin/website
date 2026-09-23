@@ -17,6 +17,7 @@ for f in index.html 404.html robots.txt sitemap.xml llms.txt site.webmanifest _h
   cp "$f" dist/
 done
 cp -R assets dist/assets
+cp -R .well-known dist/.well-known
 find dist -name '.DS_Store' -delete
 
 # GitHub-only artwork: not part of the site.

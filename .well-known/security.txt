@@ -1,0 +1,5 @@
+# PosPlug security contact
+Contact: mailto:contact@posplug.in
+Expires: 2027-09-23T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://posplug.in/.well-known/security.txt

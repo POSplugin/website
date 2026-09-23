@@ -46,6 +46,7 @@ When something ships, change it in `index.html` and `llms.txt` together.
 | `404.html` | Cloudflare Pages serves it for unknown paths, so they return 404 instead of the home page with 200 |
 | `llms.txt`, `robots.txt`, `sitemap.xml` | Machine-readable summary (status, how it works, API shape, pricing), crawler rules, sitemap |
 | `_headers`, `_redirects` | Security and cache headers; `/github` and `/source` short links |
+| `.well-known/security.txt` | Where to report a vulnerability |
 
 The page head carries the canonical URL, Open Graph and Twitter card tags,
 and JSON-LD for `Organization`, `WebSite`, `SoftwareApplication` (with the two
