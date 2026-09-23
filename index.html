@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/assets/posplug.css">
 <script>document.documentElement.className = 'js';</script>
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","name":"PosPlugin","url":"https://posplug.in/","logo":"https://posplug.in/assets/icon-512.png","email":"contact@posplug.in","sameAs":["https://github.com/POSplugin","https://factory0.ventures/ventures/posplugin/"],"parentOrganization":{"@type":"Organization","name":"Factory Zero Pte. Ltd.","url":"https://factory0.ventures/"}},{"@context":"https://schema.org","@type":"WebSite","name":"PosPlugin","url":"https://posplug.in/","description":"An AI integration layer that maps any point-of-sale system to one data model, served as one REST API plus webhooks."},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PosPlugin","applicationCategory":"DeveloperApplication","operatingSystem":"Web (hosted REST API and webhooks)","description":"AI-powered integration layer for point-of-sale systems. Connectors, an AI field-mapping engine with confidence scores and human confirmation, and one unified REST API plus webhooks. In early access; first vertical is restaurants.","url":"https://posplug.in/","offers":[{"@type":"Offer","name":"Sandbox","price":"0","priceCurrency":"USD","description":"Test POS data, the full API and webhooks."},{"@type":"Offer","name":"Live","description":"Per connected location. Prices are being set with early customers."}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is PosPlugin?","acceptedAnswer":{"@type":"Answer","text":"An integration layer for point-of-sale systems. PosPlugin connects to a merchant's POS, uses AI to map its fields to one clean data model, and serves that data through one REST API plus webhooks."}},{"@type":"Question","name":"How long does connecting a POS take?","acceptedAnswer":{"@type":"Answer","text":"The setup is designed to take under 30 minutes in six steps: pick the POS, connect with OAuth or an API key, discover sample data read-only, review the AI mapping, run a test order, and go live."}},{"@type":"Question","name":"Does PosPlugin store card data?","acceptedAnswer":{"@type":"Answer","text":"No. Card numbers never touch PosPlugin, which keeps it out of PCI card-data scope."}},{"@type":"Question","name":"Can I use PosPlugin today?","acceptedAnswer":{"@type":"Answer","text":"PosPlugin is in early access. Join the list at posplug.in and say which POS systems you need; access opens in waves, starting with restaurants."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","name":"PosPlugin","url":"https://posplug.in/","logo":"https://posplug.in/assets/icon-512.png","email":"contact@posplug.in","sameAs":["https://github.com/POSplugin","https://factory0.ventures/ventures/posplugin/"],"parentOrganization":{"@type":"Organization","name":"Factory Zero Pte. Ltd.","url":"https://factory0.ventures/"}},{"@context":"https://schema.org","@type":"WebSite","name":"PosPlugin","url":"https://posplug.in/","description":"An AI integration layer that maps any point-of-sale system to one data model, served as one REST API plus webhooks."},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PosPlugin","applicationCategory":"DeveloperApplication","operatingSystem":"Web (hosted REST API and webhooks)","description":"AI-powered integration layer for point-of-sale systems. Connectors, an AI field-mapping engine with confidence scores and human confirmation, and one unified REST API plus webhooks. In early access; first vertical is restaurants.","url":"https://posplug.in/","offers":[{"@type":"Offer","name":"Sandbox","price":"0","priceCurrency":"USD","description":"Test POS data, the full API and webhooks."},{"@type":"Offer","name":"Live","description":"Per connected location. Prices are being set with early customers."}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is PosPlugin?","acceptedAnswer":{"@type":"Answer","text":"An integration layer for point-of-sale systems. PosPlugin connects to a merchant's POS, uses AI to map its fields to one clean data model, and serves that data through one REST API plus webhooks."}},{"@type":"Question","name":"How long does connecting a POS take?","acceptedAnswer":{"@type":"Answer","text":"On POS that PosPlugin supports, the setup is designed to take under 30 minutes in six steps: pick the POS, connect with OAuth or an API key, discover sample data read-only, review the AI mapping, run a test order, and go live."}},{"@type":"Question","name":"Does PosPlugin store card data?","acceptedAnswer":{"@type":"Answer","text":"PosPlugin is designed never to receive full card numbers: only card brand and last four digits as the POS returns them, to stay out of PCI card-data scope."}},{"@type":"Question","name":"Can I use PosPlugin today?","acceptedAnswer":{"@type":"Answer","text":"PosPlugin is in early access. Join the list at posplug.in and say which POS systems you need; access opens in waves, starting with restaurants."}}]}]</script>
 <script src="/assets/posplug.js" defer></script>
 </head>
 <body>
@@ -180,7 +180,7 @@
   <div class="wrap demo__in">
    <div class="demo__head">
     <div>
-     <p class="eyebrow">[ 02 ] The 30-minute connection</p>
+     <p class="eyebrow">[ 02 ] The 30-minute connection · target, supported POS</p>
      <h2 class="display" id="demo-title">Six steps. One clock.</h2>
     </div>
     <p class="demo__hint no-js-hide">Scroll to run the setup ↓</p>
@@ -223,7 +223,7 @@
        <div class="row row--hit d1"><span>[■] Cloud POS A</span><small>KNOWN MAPPINGS</small></div>
        <div class="row d2"><span>[ ] Cloud POS B</span><small>SUPPORTED</small></div>
        <div class="row d3"><span>[ ] Cloud Kiosk C</span><small>SUPPORTED</small></div>
-       <div class="hint-box d4">Can't find it? Upload API docs. We'll draft the connector.</div>
+       <div class="hint-box d4">Coming: can't find it? Upload its API docs, get a draft connector.</div>
       </div>
       <div class="panel panel--center" data-panel="1">
        <div class="link"><span>POS·A</span><i></i><span>POSPLUG</span></div>
@@ -231,7 +231,7 @@
        <div class="scopes">
         <span><span class="ok">[✓]</span> Read orders and payments</span>
         <span><span class="ok">[✓]</span> Read menu and locations</span>
-        <span><span class="ok">[✓]</span> Create orders (delivery)</span>
+        <span><span class="ok">[✓]</span> Create orders (where the POS allows)</span>
        </div>
        <div class="auth"><span>Authorize with OAuth</span><span>or paste an API key</span></div>
       </div>
@@ -422,18 +422,19 @@
   <h2 class="h2 display" id="why-title" data-reveal>Spec sheet.</h2>
   <div class="spec" data-reveal>
    <table>
-    <caption class="sr-only">PosPlugin compared with building in-house, fixed-list POS middleware and delivery-only aggregators</caption>
+    <caption class="sr-only">PosPlugin compared with building in-house, unified POS APIs and delivery hubs. PosPlugin column: design targets, not yet measured.</caption>
     <colgroup><col><col><col><col><col></colgroup>
-    <thead><tr><th scope="col">PARAMETER</th><th scope="col" class="us">PosPlugin</th><th scope="col">Build in-house</th><th scope="col">Fixed-list POS middleware</th><th scope="col">Delivery-only aggregators</th></tr></thead>
+    <thead><tr><th scope="col">PARAMETER</th><th scope="col" class="us">PosPlugin</th><th scope="col">Build in-house</th><th scope="col">Unified POS APIs</th><th scope="col">Delivery hubs</th></tr></thead>
     <tbody>
-     <tr><th scope="row">Time to connect</th><td class="us">Under 30 minutes</td><td>Weeks per POS</td><td>Days to weeks</td><td>Days</td></tr>
-     <tr><th scope="row">POS coverage</th><td class="us">Any POS. AI builds new connectors</td><td>Only what you build</td><td>A fixed list</td><td>Delivery-ready POS only</td></tr>
-     <tr><th scope="row">Full data: catalog, payments, locations</th><td class="us">Yes</td><td>If you build it</td><td>Varies</td><td>Orders only</td></tr>
-     <tr><th scope="row">Non-developer setup</th><td class="us">Yes, guided</td><td>No</td><td>Rarely</td><td>Partly</td></tr>
-     <tr><th scope="row">AI-maintained connectors</th><td class="us">Yes</td><td>No</td><td>No</td><td>No</td></tr>
+     <tr><th scope="row">Time to connect</th><td class="us">Target: under 30 minutes on supported POS</td><td>Weeks to months per POS</td><td>Minutes, once the POS is on their list</td><td>Days</td></tr>
+     <tr><th scope="row">POS coverage</th><td class="us">Supported POS, plus AI-drafted connectors for any POS with a documented API</td><td>Only what you build</td><td>A fixed list, often 80–140+ POS</td><td>POS their partners support</td></tr>
+     <tr><th scope="row">Full data: catalog, payments, locations</th><td class="us">Yes, where the POS exposes it</td><td>If you build it</td><td>Varies</td><td>Orders and menus</td></tr>
+     <tr><th scope="row">Non-developer setup</th><td class="us">Yes, guided</td><td>No</td><td>Varies</td><td>Partly</td></tr>
+     <tr><th scope="row">AI mapping with confidence review</th><td class="us">Yes, every field</td><td>No</td><td>Not advertised</td><td>Not advertised</td></tr>
     </tbody>
    </table>
   </div>
+  <p class="trust__note" data-reveal>&gt; PosPlugin is in early access: its column is what we are building to, not a measurement. Other columns from their public docs, September 2026.</p>
  </div>
 </section>
 
@@ -441,12 +442,13 @@
  <div class="wrap">
   <p class="eyebrow" data-reveal>[ 07 ] Trust &amp; security</p>
   <h2 class="h2 display" id="security-title" style="max-width:14ch" data-reveal>Boring about security. On purpose.</h2>
+  <p class="trust__note" style="margin:24px 0 0" data-reveal>&gt; Designed in from the first line of code. PosPlugin is in early access, so none of this is audited yet.</p>
   <div class="trust">
-   <div data-reveal="0"><h3 class="condensed"><i aria-hidden="true"></i>No card data stored</h3><p>Card numbers never touch PosPlugin. We stay out of PCI card-data scope.</p></div>
+   <div data-reveal="0"><h3 class="condensed"><i aria-hidden="true"></i>No card numbers</h3><p>We never receive full card numbers, only brand and last four as the POS returns them. Designed to stay out of PCI card-data scope.</p></div>
    <div data-reveal="60"><h3 class="condensed"><i aria-hidden="true"></i>Encrypted everywhere</h3><p>In transit and at rest. POS credentials live in a secrets vault.</p></div>
    <div data-reveal="120"><h3 class="condensed"><i aria-hidden="true"></i>Per-tenant isolation</h3><p>Your merchants' data never mixes with anyone else's.</p></div>
    <div data-reveal="180"><h3 class="condensed"><i aria-hidden="true"></i>Full audit log</h3><p>Who changed which mapping, and when. Every AI decision too.</p></div>
-   <div data-reveal="240"><h3 class="condensed"><i aria-hidden="true"></i>GDPR-ready</h3><p>Data export, deletion and regional storage options.</p></div>
+   <div data-reveal="240"><h3 class="condensed"><i aria-hidden="true"></i>Built for GDPR</h3><p>Data export, deletion and regional storage options, with a DPA that lists every sub-processor.</p></div>
   </div>
   <p class="trust__note" data-reveal>&gt; AI proposes. Humans confirm. Low-confidence mappings never go live alone.</p>
  </div>

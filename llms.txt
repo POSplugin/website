@@ -5,7 +5,7 @@
 Tagline: Any POS. One API. Live in 30 minutes.
 
 ## Status
-Early access, not generally available. The website and the early-access list are live. The product (connectors, AI mapping engine, unified API, sandbox) is being built; access opens in waves. First vertical: restaurants. The API examples on the site (api.posplug.in/v1/...) show the planned shape of the API; the endpoint is not public yet.
+Early access, not generally available. The website and the early-access list are live (the list runs on a Cratefield-harness Worker at api.posplug.in). The product (connectors, AI mapping engine, unified API, sandbox) is being built; access opens in waves. First vertical: restaurants. The API examples on the site (api.posplug.in/v1/...) show the planned shape of the API; the endpoint is not public yet.
 
 ## Who it is for
 - SaaS vendors (loyalty, delivery, accounting, BI) that need data from many merchants' POS systems: one API instead of one integration per POS
@@ -20,8 +20,9 @@ Early access, not generally available. The website and the early-access list are
 
 AI proposes, humans confirm: low-confidence mappings never go live without a person approving them.
 
-## The 30-minute connection (six steps, target 27 minutes)
-1. Pick POS (1 min): search the list or type its name; if it is missing, upload its API docs and PosPlugin drafts the connector
+## The 30-minute connection (six steps; a design target on POS PosPlugin supports, not a measurement)
+Some POS (Toast, Lightspeed, SpotOn, Oracle) only open their APIs to approved partners, which takes weeks to months; those are not 30-minute connections until PosPlugin is approved.
+1. Pick POS (1 min): search the list or type its name; planned: if it is missing, upload its API docs and PosPlugin drafts a connector (only for POS with a documented API)
 2. Connect (3 min): OAuth, or paste an API key
 3. Discover (5 min): pull sample data read-only (locations, catalog, orders, payments); nothing is written to the POS
 4. Review AI mapping (10 min): confirm the fields the AI flagged as low confidence
@@ -33,20 +34,22 @@ curl "https://api.posplug.in/v1/orders?location_id=loc_8f2k" -H "Authorization: 
 Returns orders in one shape whichever POS is behind them: id, location_id, channel, status, line_items (name, qty, unit_price in minor units), tax, tip, total, currency, pos (type, ref), created_at.
 
 ## Security
-- No card data stored: card numbers never touch PosPlugin, keeping it out of PCI card-data scope
+Designed in, not yet audited (early access):
+- No card numbers: PosPlugin never receives full card numbers, only brand and last four as the POS returns them; designed to stay out of PCI card-data scope
 - Encrypted in transit and at rest; POS credentials kept in a secrets vault
 - Per-tenant isolation
 - Full audit log of mapping changes and AI decisions
-- GDPR: data export, deletion and regional storage options
+- Built for GDPR: data export, deletion, regional storage options, and a DPA listing every sub-processor
 
 ## Pricing
 - Sandbox: free (test POS data, the full API and webhooks)
 - Live: per connected location; prices are being set with early customers
 
 ## Compared with alternatives
-- Building in-house: weeks per POS, only the POS systems you build
-- Fixed-list POS middleware: a fixed list of POS systems, days to weeks per connection
-- Delivery-only aggregators: delivery-ready POS systems only, orders only
+- Building in-house: weeks to months per POS, only the POS systems you build
+- Unified POS APIs (e.g. Unified.to, Chift): a fixed list, often 80–140+ POS; minutes to connect once a POS is on their list
+- Delivery hubs (e.g. Deliverect, Otter, HubRise): orders and menus for the POS their partners support
+- PosPlugin's difference: AI mapping with a confidence score on every field and human review, full data (orders, payments, catalog, locations) and write-back where the POS allows
 
 ## Owner
 PosPlugin is a venture of Factory Zero Pte. Ltd. (https://factory0.ventures/ventures/posplugin/), run as a division of that company.
