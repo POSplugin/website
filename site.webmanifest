@@ -1,6 +1,6 @@
 {
-  "name": "PosPlug",
-  "short_name": "PosPlug",
+  "name": "PosPlugin",
+  "short_name": "PosPlugin",
   "description": "Any POS. One API. Live in 30 minutes.",
   "start_url": "/",
   "display": "standalone",

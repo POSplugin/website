@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/readme-banner.png" alt="PosPlug. Any POS. One API. Live in 30 minutes." width="100%">
+  <img src="assets/readme-banner.png" alt="PosPlugin. Any POS. One API. Live in 30 minutes." width="100%">
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
 
 # The site
 
-The marketing site for **PosPlug**, an integration layer that maps any
+The marketing site for **PosPlugin**, an integration layer that maps any
 point-of-sale system to one data model and serves it as one REST API plus
 webhooks. One page, one stylesheet, one script, served by Cloudflare Pages. No
 framework, no bundler, no build step, no runtime dependency. It was designed in
@@ -25,7 +25,7 @@ setup and the code samples are in the HTML, and the script only animates them.
 
 ## The rule this site is built around
 
-PosPlug is in early access. The product is being built, so:
+PosPlugin is in early access. The product is being built, so:
 
 - The status strip says **early access**; the first vertical is restaurants.
 - The API examples (`api.posplug.in/v1/orders`) show the planned shape of the

@@ -1,4 +1,4 @@
-/* PosPlug. The one script for posplug.in. The page is complete without it:
+/* PosPlugin. The one script for posplug.in. The page is complete without it:
    this adds the live feeds, the scroll-driven setup demo, tabs, the expanding
    units and form validation. No dependencies. */
 (() => {
@@ -249,7 +249,7 @@
       if (first) { input(first).focus(); return; }
       const v = k => input(k).value.trim();
       const body = `Work email: ${v('email')}\nCompany: ${v('company')}\nPOS systems we need: ${v('pos')}\n`;
-      location.href = 'mailto:contact@posplug.in?subject=' + encodeURIComponent('PosPlug early access: ' + v('company')) + '&body=' + encodeURIComponent(body);
+      location.href = 'mailto:contact@posplug.in?subject=' + encodeURIComponent('PosPlugin early access: ' + v('company')) + '&body=' + encodeURIComponent(body);
       $('[data-done-email]').textContent = v('email');
       form.hidden = true;
       $('[data-done]').hidden = false;

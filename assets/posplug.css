@@ -1,4 +1,4 @@
-/* PosPlug. One stylesheet for posplug.in, ported from the Claude Design
+/* PosPlugin. One stylesheet for posplug.in, ported from the Claude Design
    "PosPlug Landing v2". Palette: paper #D6D5CF, ink #141412, signal orange
    #FF4F12. Type: Archivo (display, condensed via font-stretch) and IBM Plex Mono. */
 
@@ -514,6 +514,7 @@ main { position: relative; z-index: 1; }
 .foot .brand { font-size: 18px; }
 .foot nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
 .foot__copy { font-size: 13px; color: var(--mute); }
+.foot__copy a { color: var(--ink); }
 
 /* ---------- 404 ---------- */
 .lost { min-height: calc(100vh - var(--header) - 90px); display: flex; align-items: center; padding: 64px 0; }
