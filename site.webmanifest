@@ -1,0 +1,14 @@
+{
+  "name": "PosPlug",
+  "short_name": "PosPlug",
+  "description": "Any POS. One API. Live in 30 minutes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#D6D5CF",
+  "theme_color": "#D6D5CF",
+  "icons": [
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PosPlug — Any POS. One API. Live in 30 minutes.</title>
+<meta name="description" content="PosPlug's AI maps any point-of-sale system to one clean data model. One REST API plus webhooks. Connect new merchants in minutes, not months. Early access.">
+<link rel="canonical" href="https://posplug.in/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#D6D5CF">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PosPlug">
+<meta property="og:title" content="PosPlug — Any POS. One API. Live in 30 minutes.">
+<meta property="og:description" content="An AI integration layer for every point-of-sale system. One REST API, one event stream. Early access.">
+<meta property="og:url" content="https://posplug.in/">
+<meta property="og:image" content="https://posplug.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PosPlug: Any POS. One API. Live in 30 minutes. Six POS inputs patched into one unified API.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PosPlug — Any POS. One API. Live in 30 minutes.">
+<meta name="twitter:description" content="An AI integration layer for every point-of-sale system. One REST API, one event stream.">
+<meta name="twitter:image" content="https://posplug.in/assets/og.png">
+<meta name="twitter:image:alt" content="PosPlug: Any POS. One API. Live in 30 minutes.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/posplug.css">
+<script>document.documentElement.className = 'js';</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","name":"PosPlug","url":"https://posplug.in/","logo":"https://posplug.in/assets/icon-512.png","email":"contact@posplug.in","sameAs":["https://github.com/POSplugin"]},{"@context":"https://schema.org","@type":"WebSite","name":"PosPlug","url":"https://posplug.in/","description":"An AI integration layer that maps any point-of-sale system to one data model, served as one REST API plus webhooks."},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PosPlug","applicationCategory":"DeveloperApplication","operatingSystem":"Web (hosted REST API and webhooks)","description":"AI-powered integration layer for point-of-sale systems. Connectors, an AI field-mapping engine with confidence scores and human confirmation, and one unified REST API plus webhooks. In early access; first vertical is restaurants.","url":"https://posplug.in/","offers":[{"@type":"Offer","name":"Sandbox","price":"0","priceCurrency":"USD","description":"Test POS data, the full API and webhooks."},{"@type":"Offer","name":"Live","description":"Per connected location. Prices are being set with early customers."}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is PosPlug?","acceptedAnswer":{"@type":"Answer","text":"An integration layer for point-of-sale systems. PosPlug connects to a merchant's POS, uses AI to map its fields to one clean data model, and serves that data through one REST API plus webhooks."}},{"@type":"Question","name":"How long does connecting a POS take?","acceptedAnswer":{"@type":"Answer","text":"The setup is designed to take under 30 minutes in six steps: pick the POS, connect with OAuth or an API key, discover sample data read-only, review the AI mapping, run a test order, and go live."}},{"@type":"Question","name":"Does PosPlug store card data?","acceptedAnswer":{"@type":"Answer","text":"No. Card numbers never touch PosPlug, which keeps it out of PCI card-data scope."}},{"@type":"Question","name":"Can I use PosPlug today?","acceptedAnswer":{"@type":"Answer","text":"PosPlug is in early access. Join the list at posplug.in and say which POS systems you need; access opens in waves, starting with restaurants."}}]}]</script>
+<script src="/assets/posplug.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rails" aria-hidden="true"><div></div></div>
+
+<header class="top">
+ <div class="top__prog" aria-hidden="true"></div>
+ <div class="wrap top__in">
+  <a class="brand" href="#top" aria-label="PosPlug home">
+   <span class="mark" aria-hidden="true"><i class="mark__cable"></i><i class="mark__body"></i><span class="mark__prongs"><i></i><i></i></span></span>
+   <span class="brand__word">Pos<b>Plug</b></span>
+  </a>
+  <nav class="nav" aria-label="Main">
+   <a href="#product"><span>01</span>Product</a>
+   <a href="#how"><span>02</span>How it works</a>
+   <a href="#developers"><span>03</span>Developers</a>
+   <a href="#pricing"><span>04</span>Pricing</a>
+  </nav>
+  <div class="top__right">
+   <span class="utc"><i class="led led--sm led--green led--slow"></i><span data-utc>UTC --:--:--</span></span>
+   <a class="btn btn--primary btn--sm" href="#access">Get early access</a>
+  </div>
+ </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="hero-title">
+ <div class="wrap">
+  <div class="strip">
+   <span><i class="led"></i><span data-scramble>PP-01 / AI integration layer</span></span>
+   <span>Status: early access</span>
+   <span>Vertical 01: restaurants</span>
+  </div>
+  <h1 class="h-hero display" id="hero-title">
+   <span>Any POS.</span>
+   <span>One API.</span>
+   <span><span>Live in</span><mark>30</mark><span>minutes.</span></span>
+  </h1>
+  <div class="hero__cols">
+   <p class="lede">PosPlug's AI maps any point-of-sale system to one clean data model, so your team connects new merchants in minutes, not months.</p>
+   <div class="ctas">
+    <a class="btn btn--primary" href="#access">Get early access<span aria-hidden="true">→</span></a>
+    <a class="btn btn--ghost" href="#demo"><span class="play" aria-hidden="true"></span>See it connect</a>
+   </div>
+  </div>
+
+  <div class="board" data-board>
+   <span class="screw screw--tl" aria-hidden="true"></span><span class="screw screw--tr" aria-hidden="true"></span><span class="screw screw--bl" aria-hidden="true"></span><span class="screw screw--br" aria-hidden="true"></span>
+   <div class="cross cross--v" aria-hidden="true" data-cross-v></div>
+   <div class="cross cross--h" aria-hidden="true" data-cross-h></div>
+   <div class="board__bar"><span>Patch board · live</span><span aria-hidden="true" data-cross-txt>X 0000 · Y 0000</span></div>
+   <div class="board__body">
+    <div class="board__svg">
+     <svg viewBox="0 0 760 440" role="img" aria-label="Six different POS terminals patch into the PosPlug core, which outputs one clean unified event stream." data-hero>
+      <g fill="none" stroke="rgba(20,20,18,0.3)" style="stroke-width:2">
+       <path data-cable d="M130 40 H330 V170 H400"/><path data-cable d="M130 112 H300 V190 H400"/><path data-cable d="M130 184 H270 V210 H400"/><path data-cable d="M130 256 H270 V230 H400"/><path data-cable d="M130 328 H300 V250 H400"/><path data-cable d="M130 400 H330 V270 H400"/>
+      </g>
+      <g fill="none" stroke="#FF4F12" style="stroke-width:2; stroke-dasharray:3 17; animation:flow 1.4s linear infinite">
+       <path d="M130 40 H330 V170 H400"/><path d="M130 112 H300 V190 H400"/><path d="M130 184 H270 V210 H400"/><path d="M130 256 H270 V230 H400"/><path d="M130 328 H300 V250 H400"/><path d="M130 400 H330 V270 H400"/>
+      </g>
+      <path data-out d="M540 220 H760" fill="none" stroke="#141412" style="stroke-width:4"/>
+      <path d="M540 220 H760" fill="none" stroke="#FF4F12" style="stroke-width:4; stroke-dasharray:12 8; animation:flow .7s linear infinite"/>
+      <g fill="#4A4944" style="font:500 11px 'IBM Plex Mono',monospace">
+       <text x="140" y="31" style="animation:flicker 3.1s infinite">tkt_ttl=42.1</text>
+       <text x="140" y="103" style="animation:flicker 2.6s .4s infinite">AMT_CENTS:4210</text>
+       <text x="140" y="175" style="animation:flicker 3.4s .9s infinite">orderNo#881</text>
+       <text x="140" y="247" style="animation:flicker 2.9s .2s infinite">pmt.stat=CAP</text>
+       <text x="140" y="319" style="animation:flicker 3.7s 1.2s infinite">itm-desc|burg</text>
+       <text x="140" y="391" style="animation:flicker 2.4s .6s infinite">LOC#03;tz=+2</text>
+      </g>
+      <g data-pulses></g>
+      <g>
+       <g transform="translate(0 16)"><rect width="130" height="48" fill="#D6D5CF" stroke="#141412" style="stroke-width:2"/><circle cx="104" cy="24" r="13" fill="#141412"/><circle cx="104" cy="24" r="5" fill="#4A4944"/><text x="12" y="21" fill="#141412" style="font:700 12px 'IBM Plex Mono',monospace">IN-01</text><text x="12" y="37" fill="#4A4944" style="font:500 11px 'IBM Plex Mono',monospace">POS·A</text><rect x="72" y="8" width="6" height="6" fill="#FF4F12" style="animation:led 1.3s steps(2) infinite"/></g>
+       <g transform="translate(0 88)"><rect width="130" height="48" fill="#D6D5CF" stroke="#141412" style="stroke-width:2"/><circle cx="104" cy="24" r="13" fill="#141412"/><circle cx="104" cy="24" r="5" fill="#4A4944"/><text x="12" y="21" fill="#141412" style="font:700 12px 'IBM Plex Mono',monospace">IN-02</text><text x="12" y="37" fill="#4A4944" style="font:500 11px 'IBM Plex Mono',monospace">POS·B</text><rect x="72" y="8" width="6" height="6" fill="#FF4F12" style="animation:led 1.7s steps(2) infinite"/></g>
+       <g transform="translate(0 160)"><rect width="130" height="48" fill="#D6D5CF" stroke="#141412" style="stroke-width:2"/><circle cx="104" cy="24" r="13" fill="#141412"/><circle cx="104" cy="24" r="5" fill="#4A4944"/><text x="12" y="21" fill="#141412" style="font:700 12px 'IBM Plex Mono',monospace">IN-03</text><text x="12" y="37" fill="#4A4944" style="font:500 11px 'IBM Plex Mono',monospace">KIOSK·C</text><rect x="72" y="8" width="6" height="6" fill="#FF4F12" style="animation:led 1.1s steps(2) infinite"/></g>
+       <g transform="translate(0 232)"><rect width="130" height="48" fill="#D6D5CF" stroke="#141412" style="stroke-width:2"/><circle cx="104" cy="24" r="13" fill="#141412"/><circle cx="104" cy="24" r="5" fill="#4A4944"/><text x="12" y="21" fill="#141412" style="font:700 12px 'IBM Plex Mono',monospace">IN-04</text><text x="12" y="37" fill="#4A4944" style="font:500 11px 'IBM Plex Mono',monospace">TABLET·D</text><rect x="72" y="8" width="6" height="6" fill="#FF4F12" style="animation:led 2.1s steps(2) infinite"/></g>
+       <g transform="translate(0 304)"><rect width="130" height="48" fill="#D6D5CF" stroke="#141412" style="stroke-width:2"/><circle cx="104" cy="24" r="13" fill="#141412"/><circle cx="104" cy="24" r="5" fill="#4A4944"/><text x="12" y="21" fill="#141412" style="font:700 12px 'IBM Plex Mono',monospace">IN-05</text><text x="12" y="37" fill="#4A4944" style="font:500 11px 'IBM Plex Mono',monospace">RETAIL·E</text><rect x="72" y="8" width="6" height="6" fill="#FF4F12" style="animation:led 1.5s steps(2) infinite"/></g>
+       <g transform="translate(0 376)"><rect width="130" height="48" fill="#D6D5CF" stroke="#141412" style="stroke-width:2"/><circle cx="104" cy="24" r="13" fill="#141412"/><circle cx="104" cy="24" r="5" fill="#4A4944"/><text x="12" y="21" fill="#141412" style="font:700 12px 'IBM Plex Mono',monospace">IN-06</text><text x="12" y="37" fill="#4A4944" style="font:500 11px 'IBM Plex Mono',monospace">HANDHELD·F</text><rect x="72" y="8" width="6" height="6" fill="#FF4F12" style="animation:led 1.9s steps(2) infinite"/></g>
+      </g>
+      <g data-core style="transform-origin:470px 220px">
+       <rect x="400" y="130" width="140" height="180" fill="#141412"/>
+       <rect x="412" y="142" width="116" height="40" fill="#23231F"/>
+       <text x="420" y="167" fill="#FF4F12" style="font:700 14px 'IBM Plex Mono',monospace; letter-spacing:.06em">PP-CORE</text>
+       <g fill="#FF4F12">
+        <rect x="420" y="200" width="10" height="10" style="animation:led 1s steps(2) infinite"/><rect x="436" y="200" width="10" height="10" style="animation:led 1.4s .2s steps(2) infinite"/><rect x="452" y="200" width="10" height="10" style="animation:led .8s .1s steps(2) infinite"/>
+        <rect x="420" y="216" width="10" height="10" style="animation:led 1.2s .3s steps(2) infinite"/><rect x="436" y="216" width="10" height="10" style="animation:led .9s steps(2) infinite"/><rect x="452" y="216" width="10" height="10" style="animation:led 1.6s .5s steps(2) infinite"/>
+       </g>
+       <g stroke="#3A3A35" style="stroke-width:2"><line x1="480" y1="200" x2="480" y2="226"/><line x1="490" y1="200" x2="490" y2="226"/><line x1="500" y1="200" x2="500" y2="226"/><line x1="510" y1="200" x2="510" y2="226"/><line x1="520" y1="200" x2="520" y2="226"/></g>
+       <text x="420" y="260" fill="#A9A69B" style="font:500 11px 'IBM Plex Mono',monospace">AI MAP</text>
+       <rect x="420" y="268" width="100" height="6" fill="#3A3A35"/>
+       <rect x="420" y="268" width="96" height="6" fill="#1FA85A"/>
+       <text x="420" y="296" fill="#A9A69B" style="font:500 11px 'IBM Plex Mono',monospace">conf 0.96</text>
+      </g>
+      <text x="556" y="206" fill="#141412" style="font:700 12px 'IBM Plex Mono',monospace; letter-spacing:.06em">OUT · unified.v1</text>
+      <g data-pulses-out></g>
+     </svg>
+    </div>
+    <div class="board__bus">
+     <div class="bus__head"><span>Event bus</span><span><i class="led led--sm led--green led--fast"></i>Live</span></div>
+     <div class="bus">
+      <div class="bus__scan" aria-hidden="true"></div>
+      <div class="bus__sweep" aria-hidden="true"></div>
+      <div class="bus__stream" aria-label="Sample unified events" data-stream>
+       <div class="ev"><div class="ev__head"><b>order.created</b><span>12:04:11</span></div><div class="ev__line">"id": "ord_k3v9qa"</div><div class="ev__line">"location_id": "loc_8f2k"</div><div class="ev__line">"total": 2963</div><div class="ev__line">"pos": "tablet_pos_b"</div></div>
+       <div class="ev"><div class="ev__head"><b>payment.captured</b><span>12:04:09</span></div><div class="ev__line">"id": "pay_7mz2te"</div><div class="ev__line">"method": "card"</div><div class="ev__line">"amount": 2963</div><div class="ev__line">"pos": "cloud_pos_a"</div></div>
+       <div class="ev"><div class="ev__head"><b>item.updated</b><span>12:04:07</span></div><div class="ev__line">"id": "itm_q81xrw"</div><div class="ev__line">"name": "Smash burger"</div><div class="ev__line">"price": 1250</div><div class="ev__line">"pos": "kiosk_pos_c"</div></div>
+       <div class="ev"><div class="ev__head"><b>order.updated</b><span>12:04:05</span></div><div class="ev__line">"id": "ord_b20jfd"</div><div class="ev__line">"location_id": "loc_8f2k"</div><div class="ev__line">"total": 4180</div><div class="ev__line">"pos": "legacy_pos_d"</div></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+ <div class="marquee__track">
+  <span><span>order.created</span><i>■</i><span>payment.captured</span><i>■</i><span>item.updated</span><i>■</i><span>location.synced</span><i>■</i><span>order.updated</span><i>■</i><span>any pos → one api</span><i>■</i></span>
+  <span><span>order.created</span><i>■</i><span>payment.captured</span><i>■</i><span>item.updated</span><i>■</i><span>location.synced</span><i>■</i><span>order.updated</span><i>■</i><span>any pos → one api</span><i>■</i></span>
+ </div>
+</div>
+
+<section class="sec" id="product" aria-labelledby="product-title">
+ <div class="wrap">
+  <p class="eyebrow" data-reveal>[ 01 ] The problem</p>
+  <h2 class="h2 display" id="product-title" style="max-width:14ch" data-reveal>POS integrations are a tax on every roadmap.</h2>
+  <div class="errs">
+   <div class="err" data-reveal="0"><span class="err__code"><span>ERR-01</span><i></i></span><p class="condensed">Hundreds of POS systems</p><span>api_count: too_many</span></div>
+   <div class="err" data-reveal="120"><span class="err__code"><span>ERR-02</span><i></i></span><p class="condensed">Every one a custom integration</p><span>effort: from_scratch</span></div>
+   <div class="err" data-reveal="240"><span class="err__code"><span>ERR-03</span><i></i></span><p class="condensed">Weeks of work that breaks when the vendor changes an API</p><span>last_break: yesterday</span></div>
+  </div>
+  <div class="cutline" data-line></div>
+  <div class="cuts" data-reveal="200">
+   <p class="display">PosPlug cuts through.</p>
+   <p>One layer. Every POS. Patched.</p>
+  </div>
+ </div>
+</section>
+
+<section class="demo night" id="demo" aria-labelledby="demo-title" data-demo>
+ <div class="demo__stage">
+  <div class="night-grid" aria-hidden="true"></div>
+  <div class="wrap demo__in">
+   <div class="demo__head">
+    <div>
+     <p class="eyebrow">[ 02 ] The 30-minute connection</p>
+     <h2 class="display" id="demo-title">Six steps. One clock.</h2>
+    </div>
+    <p class="demo__hint no-js-hide">Scroll to run the setup ↓</p>
+   </div>
+   <ol class="steps" aria-label="Setup steps">
+    <li><button class="step is-now" type="button" data-step="0"><span class="step__top"><span><i class="step__led"></i>01</span><span>1m</span></span><span class="step__name">Pick POS</span><span class="sr-only">: Search the list, or just type its name.</span></button></li>
+    <li><button class="step" type="button" data-step="1"><span class="step__top"><span><i class="step__led"></i>02</span><span>3m</span></span><span class="step__name">Connect</span><span class="sr-only">: Sign in with OAuth, or paste an API key.</span></button></li>
+    <li><button class="step" type="button" data-step="2"><span class="step__top"><span><i class="step__led"></i>03</span><span>5m</span></span><span class="step__name">Discover</span><span class="sr-only">: Watch real sample data roll in.</span></button></li>
+    <li><button class="step" type="button" data-step="3"><span class="step__top"><span><i class="step__led"></i>04</span><span>10m</span></span><span class="step__name">Review AI mapping</span><span class="sr-only">: The AI did the mapping. You confirm the flagged ones.</span></button></li>
+    <li><button class="step" type="button" data-step="4"><span class="step__top"><span><i class="step__led"></i>05</span><span>5m</span></span><span class="step__name">Test</span><span class="sr-only">: One click. A real test order, end to end.</span></button></li>
+    <li><button class="step" type="button" data-step="5"><span class="step__top"><span><i class="step__led"></i>06</span><span>3m</span></span><span class="step__name">Go live</span><span class="sr-only">: Pick locations. Hit go live. That's it.</span></button></li>
+   </ol>
+   <div class="demo__grid" data-demo-state>
+    <div class="demo__left">
+     <div class="clock">
+      <div class="clock__row"><span>Elapsed</span><span>Budget 30:00</span></div>
+      <div class="clock__face">
+       <span class="clock__ghost" aria-hidden="true">88:88</span>
+       <span class="clock__time" aria-label="Elapsed setup time" data-clock>00:00</span>
+      </div>
+      <div class="ticks" aria-hidden="true" data-ticks><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="is-buffer"></i><i class="is-buffer"></i><i class="is-buffer"></i></div>
+      <div class="clock__foot"><span>00</span><span>target 27:00 · buffer 3:00</span></div>
+     </div>
+     <div class="cur" aria-live="polite">
+      <p class="cur__meta">Step <span data-cur-n>01</span> · <span data-cur-min>1</span> min budget</p>
+      <p class="cur__name condensed" data-cur-name>Pick POS</p>
+      <p class="cur__cap" data-cur-cap>Search the list, or just type its name.</p>
+     </div>
+     <div class="fin">
+      <p>Clock stopped · connection live</p>
+      <p class="display">3 minutes to spare.</p>
+     </div>
+    </div>
+
+    <div class="screen">
+     <div class="screen__bar"><span>setup.posplug.in</span><span class="segs" aria-hidden="true" data-segs><i class="is-now"></i><i></i><i></i><i></i><i></i><i></i></span></div>
+     <div class="screen__body">
+      <div class="panel panel--list is-on" data-panel="0">
+       <div class="search"><span>&gt; search pos:</span><span class="search__typed">cloud</span><span class="caret" aria-hidden="true"></span></div>
+       <div class="row row--hit d1"><span>[■] Cloud POS A</span><small>KNOWN MAPPINGS</small></div>
+       <div class="row d2"><span>[ ] Cloud POS B</span><small>SUPPORTED</small></div>
+       <div class="row d3"><span>[ ] Cloud Kiosk C</span><small>SUPPORTED</small></div>
+       <div class="hint-box d4">Can't find it? Upload API docs. We'll draft the connector.</div>
+      </div>
+      <div class="panel panel--center" data-panel="1">
+       <div class="link"><span>POS·A</span><i></i><span>POSPLUG</span></div>
+       <p class="panel__title">Sign in to Cloud POS A</p>
+       <div class="scopes">
+        <span><span class="ok">[✓]</span> Read orders and payments</span>
+        <span><span class="ok">[✓]</span> Read menu and locations</span>
+        <span><span class="ok">[✓]</span> Create orders (delivery)</span>
+       </div>
+       <div class="auth"><span>Authorize with OAuth</span><span>or paste an API key</span></div>
+      </div>
+      <div class="panel pull" data-panel="2">
+       <p class="panel__kicker">&gt; PULLING SAMPLE DATA · READ-ONLY</p>
+       <div><div class="meter__head"><span>locations</span><span>12</span></div><div class="meter__bar"><i style="animation:growx 1s steps(12) both"></i></div></div>
+       <div><div class="meter__head"><span>menu + catalog</span><span>486 items</span></div><div class="meter__bar"><i style="animation:growx 1.8s steps(18) .3s both"></i></div></div>
+       <div><div class="meter__head"><span>recent orders</span><span>2,140</span></div><div class="meter__bar"><i style="animation:growx 2.6s steps(24) .5s both"></i></div></div>
+       <div><div class="meter__head"><span>payments</span><span>2,098</span></div><div class="meter__bar"><i style="animation:growx 3s steps(28) .7s both"></i></div></div>
+       <p class="panel__note">Nothing is written to your POS during discovery.</p>
+      </div>
+      <div class="panel map" data-panel="3">
+       <div class="map__head"><span>POS FIELD</span><span>UNIFIED</span><span>CONF</span></div>
+       <div class="map__row"><span class="map__raw"><b>ticket_total</b><small>42.10</small></span><span class="map__uni">order.total</span><span class="map__conf"><span class="badge">98% AUTO</span></span></div>
+       <div class="map__row"><span class="map__raw"><b>tkt_open_ts</b><small>1727093051</small></span><span class="map__uni">order.created_at</span><span class="map__conf"><span class="badge">97% AUTO</span></span></div>
+       <div class="map__row"><span class="map__raw"><b>pmt_type_cd</b><small>2</small></span><span class="map__uni">payment.method</span><span class="map__conf"><span class="badge badge--ask" data-badge>71% CONFIRM</span><button class="confirm" type="button" data-confirm="71%">OK</button></span></div>
+       <div class="map__row"><span class="map__raw"><b>itm_desc</b><small>"Smash burger"</small></span><span class="map__uni">catalog_item.name</span><span class="map__conf"><span class="badge">99% AUTO</span></span></div>
+       <div class="map__row"><span class="map__raw"><b>svc_chg</b><small>3.00</small></span><span class="map__uni">order.tips</span><span class="map__conf"><span class="badge badge--ask" data-badge>64% CONFIRM</span><button class="confirm" type="button" data-confirm="64%">OK</button></span></div>
+       <div class="ai"><b>AI&gt;</b><span>'ticket_total' looks like the order total including tax.</span></div>
+      </div>
+      <div class="panel panel--col" data-panel="4">
+       <div class="route"><div class="route__rail"><i></i></div><span>POS</span><span>POSPLUG</span><span>YOUR APP</span></div>
+       <p class="panel__kicker">&gt; TEST ORDER ord_test_7Q2 · €29.63</p>
+       <div class="checks">
+        <div class="row row--tight"><span>location</span><span>[PASS]</span></div>
+        <div class="row row--tight"><span>catalog_items</span><span>[PASS]</span></div>
+        <div class="row row--tight"><span>order</span><span>[PASS]</span></div>
+        <div class="row row--tight"><span>payment</span><span>[PASS]</span></div>
+        <div class="row row--tight"><span>webhook</span><span>[200 OK]</span></div>
+       </div>
+      </div>
+      <div class="panel live" data-panel="5">
+       <div class="live__badge"><i></i><i></i><i></i><span class="display">Live</span></div>
+       <div class="live__meta"><span>12 locations syncing</span><span>health monitoring: on</span></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="how" aria-labelledby="how-title">
+ <div class="wrap">
+  <p class="eyebrow" data-reveal>[ 03 ] How it works</p>
+  <div class="how__head">
+   <h2 class="h2 display" id="how-title" style="max-width:12ch" data-reveal>Three layers. Zero glue code.</h2>
+   <p class="no-js-hide" data-reveal>Hover or tap a unit to open it.</p>
+  </div>
+  <div class="how">
+   <div class="io" data-reveal>
+    <span>IN</span>
+    <span class="chip">POS·A</span><span class="chip">POS·B</span><span class="chip">POS·C</span><span class="chip chip--new">+ new POS</span>
+   </div>
+   <div class="layers">
+    <div class="unit" tabindex="0" role="button" aria-expanded="false" data-unit>
+     <div class="unit__head"><span class="unit__id"><i class="unit__led"></i><span class="unit__code">RU-01</span><h3 class="unit__name condensed" style="margin:0">Connector layer</h3></span><span class="unit__vent" aria-hidden="true"></span></div>
+     <div class="unit__body"><ul><li>OAuth, API keys and partner credentials</li><li>Polling or webhooks, with retries and rate limits</li><li>Templates for REST, GraphQL and file exports</li></ul></div>
+    </div>
+    <div class="pipe" aria-hidden="true"></div>
+    <div class="unit" tabindex="0" role="button" aria-expanded="false" data-unit>
+     <div class="unit__head"><span class="unit__id"><i class="unit__led"></i><span class="unit__code">RU-02</span><h3 class="unit__name condensed" style="margin:0">AI mapping engine</h3></span><span class="unit__vent" aria-hidden="true"></span></div>
+     <div class="unit__body"><ul><li>Reads API docs, specs or sample payloads</li><li>Confidence score on every field</li><li>Every confirmed mapping trains the next one</li></ul></div>
+    </div>
+    <div class="pipe" aria-hidden="true"></div>
+    <div class="unit" tabindex="0" role="button" aria-expanded="false" data-unit>
+     <div class="unit__head"><span class="unit__id"><i class="unit__led"></i><span class="unit__code">RU-03</span><h3 class="unit__name condensed" style="margin:0">Unified API + webhooks</h3></span><span class="unit__vent" aria-hidden="true"></span></div>
+     <div class="unit__body"><ul><li>One REST API, one event stream</li><li>Original POS payload kept on every record</li><li>Two-way where the POS allows: inject orders</li></ul></div>
+    </div>
+   </div>
+   <div class="health" tabindex="0" role="button" aria-expanded="false" data-unit data-reveal>
+    <span class="health__tag"><i class="led led--green-hi" style="animation-duration:1.4s"></i>HM · ALWAYS ON</span>
+    <h3 class="health__name condensed" style="margin:0">Health monitoring</h3>
+    <div class="vu" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="drift" aria-hidden="true">drift: amt → amount_cents<br>fix suggested</div>
+    <div class="unit__body"><ul><li>Detects schema drift and failing syncs</li><li>Suggests a mapping fix before customers notice</li><li>Alerts ops with what broke and why</li></ul></div>
+   </div>
+   <div class="io io--out" data-reveal>
+    <span>OUT</span>
+    <span class="chip">Loyalty app</span><span class="chip">Delivery platform</span><span class="chip">Accounting / BI</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec night" id="developers" aria-labelledby="dev-title">
+ <div class="wrap">
+  <p class="eyebrow" data-reveal>[ 04 ] For developers</p>
+  <h2 class="h2 display" id="dev-title" style="max-width:16ch" data-reveal>Write it once. <span class="accent">Works with every POS.</span></h2>
+  <div class="dev">
+   <div class="term term--code" data-reveal>
+    <div class="tabs" role="tablist" aria-label="Code language">
+     <button class="tab" type="button" role="tab" id="tab-curl" aria-selected="true" aria-controls="code-curl" data-tab="curl">cURL</button>
+     <button class="tab" type="button" role="tab" id="tab-node" aria-selected="false" aria-controls="code-node" data-tab="node" tabindex="-1">Node</button>
+     <button class="tab" type="button" role="tab" id="tab-python" aria-selected="false" aria-controls="code-python" data-tab="python" tabindex="-1">Python</button>
+    </div>
+<pre class="code" id="code-curl" role="tabpanel" aria-labelledby="tab-curl"><code><span class="ln" aria-hidden="true">1</span><span class="t-g">curl</span> <span class="t-o">"https://api.posplug.in/v1/orders?location_id=loc_8f2k"</span> \
+<span class="ln" aria-hidden="true">2</span>  <span class="t-g">-H</span> <span class="t-o">"Authorization: Bearer $POSPLUG_KEY"</span></code></pre>
+<pre class="code" id="code-node" role="tabpanel" aria-labelledby="tab-node" hidden><code><span class="ln" aria-hidden="true">1</span><span class="t-g">const</span> res = <span class="t-g">await</span> <span class="t-g">fetch</span>(
+<span class="ln" aria-hidden="true">2</span>  <span class="t-o">"https://api.posplug.in/v1/orders?location_id=loc_8f2k"</span>,
+<span class="ln" aria-hidden="true">3</span>  { headers: { Authorization: <span class="t-o">`Bearer ${process.env.POSPLUG_KEY}`</span> } }
+<span class="ln" aria-hidden="true">4</span>);
+<span class="ln" aria-hidden="true">5</span><span class="t-g">const</span> { data } = <span class="t-g">await</span> res.json();</code></pre>
+<pre class="code" id="code-python" role="tabpanel" aria-labelledby="tab-python" hidden><code><span class="ln" aria-hidden="true">1</span><span class="t-g">import</span> <span class="t-g">os</span>, <span class="t-g">requests</span>
+<span class="ln" aria-hidden="true">2</span>
+<span class="ln" aria-hidden="true">3</span>res = <span class="t-g">requests</span>.get(
+<span class="ln" aria-hidden="true">4</span>    <span class="t-o">"https://api.posplug.in/v1/orders"</span>,
+<span class="ln" aria-hidden="true">5</span>    params={<span class="t-o">"location_id"</span>: <span class="t-o">"loc_8f2k"</span>},
+<span class="ln" aria-hidden="true">6</span>    headers={<span class="t-o">"Authorization"</span>: f<span class="t-o">"Bearer {os.environ['POSPLUG_KEY']}"</span>},
+<span class="ln" aria-hidden="true">7</span>)
+<span class="ln" aria-hidden="true">8</span>orders = res.json()[<span class="t-o">"data"</span>]</code></pre>
+    <div class="term__foot">Same call. Same shape. Whichever POS is behind it.</div>
+   </div>
+   <div class="dev__side">
+    <div class="term" data-reveal="120">
+     <div class="term__bar"><span>200 OK · application/json</span><span>48 ms</span></div>
+<pre class="json" aria-label="Example response"><code>{
+  <span class="t-o">"data"</span>: [
+    {
+      <span class="t-o">"id"</span>: <span class="t-g">"ord_01J9ZK4"</span>,
+      <span class="t-o">"location_id"</span>: <span class="t-g">"loc_8f2k"</span>,
+      <span class="t-o">"channel"</span>: <span class="t-g">"dine_in"</span>,
+      <span class="t-o">"status"</span>: <span class="t-g">"completed"</span>,
+      <span class="t-o">"line_items"</span>: [
+        {
+          <span class="t-o">"name"</span>: <span class="t-g">"Smash burger"</span>,
+          <span class="t-o">"qty"</span>: <span class="t-y">2</span>,
+          <span class="t-o">"unit_price"</span>: <span class="t-y">1250</span>
+        }
+      ],
+      <span class="t-o">"tax"</span>: <span class="t-y">213</span>,
+      <span class="t-o">"tip"</span>: <span class="t-y">300</span>,
+      <span class="t-o">"total"</span>: <span class="t-y">2963</span>,
+      <span class="t-o">"currency"</span>: <span class="t-g">"EUR"</span>,
+      <span class="t-o">"pos"</span>: {
+        <span class="t-o">"type"</span>: <span class="t-g">"cloud_pos_a"</span>,
+        <span class="t-o">"ref"</span>: <span class="t-g">"T-88213"</span>
+      },
+      <span class="t-o">"created_at"</span>: <span class="t-g">"2026-09-23T12:04:11Z"</span>
+    }
+  ],
+  <span class="t-o">"has_more"</span>: <span class="t-o">false</span>
+}</code></pre>
+    </div>
+    <div class="term" data-reveal="240">
+     <div class="term__bar"><span>webhooks → your.app/hooks</span><span><i class="led led--sm led--green-hi led--fast"></i>LIVE</span></div>
+     <div class="hooks" data-hooks>
+      <div class="hook"><span>12:04:11</span><span><b>order.created</b> · loc_8f2k</span><span>200</span></div>
+      <div class="hook"><span>12:04:09</span><span><b>payment.captured</b> · loc_3m1q</span><span>200</span></div>
+      <div class="hook"><span>12:04:06</span><span><b>item.updated</b> · loc_9xa7</span><span>200</span></div>
+      <div class="hook"><span>12:04:02</span><span><b>order.updated</b> · loc_1p0d</span><span>200</span></div>
+      <div class="hook"><span>12:03:58</span><span><b>location.synced</b> · loc_8f2k</span><span>200</span></div>
+      <div class="hook"><span>12:03:55</span><span><b>order.created</b> · loc_3m1q</span><span>200</span></div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="who" aria-labelledby="who-title">
+ <div class="wrap">
+  <p class="eyebrow" data-reveal>[ 05 ] Who it's for</p>
+  <h2 class="h2 display" id="who-title" style="max-width:16ch" data-reveal>Built for people who need POS data at scale.</h2>
+  <div class="cards">
+   <article class="card" data-reveal="0">
+    <div class="card__tag card__tag--hot"><span>UNIT 01</span><span>PRIMARY</span></div>
+    <h3 class="condensed">SaaS vendors</h3>
+    <dl><div><dt>PAIN</dt><dd>One integration per POS. Forever.</dd></div><div><dt class="fix">FIX</dt><dd class="fix">One API that covers every merchant's POS.</dd></div></dl>
+   </article>
+   <article class="card" data-reveal="120">
+    <div class="card__tag"><span>UNIT 02</span><span>OPERATORS</span></div>
+    <h3 class="condensed">Multi-location operators</h3>
+    <dl><div><dt>PAIN</dt><dd>Different POS per site. No single view.</dd></div><div><dt class="fix">FIX</dt><dd class="fix">Unified data. No hardware swap.</dd></div></dl>
+   </article>
+   <article class="card" data-reveal="240">
+    <div class="card__tag"><span>UNIT 03</span><span>PARTNERS</span></div>
+    <h3 class="condensed">POS resellers &amp; implementers</h3>
+    <dl><div><dt>PAIN</dt><dd>Slow go-lives. Endless tickets.</dd></div><div><dt class="fix">FIX</dt><dd class="fix">Merchants on third-party apps the same day.</dd></div></dl>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="sec sec--flush" id="why" aria-labelledby="why-title">
+ <div class="wrap">
+  <p class="eyebrow" data-reveal>[ 06 ] Why PosPlug</p>
+  <h2 class="h2 display" id="why-title" data-reveal>Spec sheet.</h2>
+  <div class="spec" data-reveal>
+   <table>
+    <caption class="sr-only">PosPlug compared with building in-house, fixed-list POS middleware and delivery-only aggregators</caption>
+    <colgroup><col><col><col><col><col></colgroup>
+    <thead><tr><th scope="col">PARAMETER</th><th scope="col" class="us">PosPlug</th><th scope="col">Build in-house</th><th scope="col">Fixed-list POS middleware</th><th scope="col">Delivery-only aggregators</th></tr></thead>
+    <tbody>
+     <tr><th scope="row">Time to connect</th><td class="us">Under 30 minutes</td><td>Weeks per POS</td><td>Days to weeks</td><td>Days</td></tr>
+     <tr><th scope="row">POS coverage</th><td class="us">Any POS. AI builds new connectors</td><td>Only what you build</td><td>A fixed list</td><td>Delivery-ready POS only</td></tr>
+     <tr><th scope="row">Full data: catalog, payments, locations</th><td class="us">Yes</td><td>If you build it</td><td>Varies</td><td>Orders only</td></tr>
+     <tr><th scope="row">Non-developer setup</th><td class="us">Yes, guided</td><td>No</td><td>Rarely</td><td>Partly</td></tr>
+     <tr><th scope="row">AI-maintained connectors</th><td class="us">Yes</td><td>No</td><td>No</td><td>No</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section class="sec sec--flush" id="security" aria-labelledby="security-title">
+ <div class="wrap">
+  <p class="eyebrow" data-reveal>[ 07 ] Trust &amp; security</p>
+  <h2 class="h2 display" id="security-title" style="max-width:14ch" data-reveal>Boring about security. On purpose.</h2>
+  <div class="trust">
+   <div data-reveal="0"><h3 class="condensed"><i aria-hidden="true"></i>No card data stored</h3><p>Card numbers never touch PosPlug. We stay out of PCI card-data scope.</p></div>
+   <div data-reveal="60"><h3 class="condensed"><i aria-hidden="true"></i>Encrypted everywhere</h3><p>In transit and at rest. POS credentials live in a secrets vault.</p></div>
+   <div data-reveal="120"><h3 class="condensed"><i aria-hidden="true"></i>Per-tenant isolation</h3><p>Your merchants' data never mixes with anyone else's.</p></div>
+   <div data-reveal="180"><h3 class="condensed"><i aria-hidden="true"></i>Full audit log</h3><p>Who changed which mapping, and when. Every AI decision too.</p></div>
+   <div data-reveal="240"><h3 class="condensed"><i aria-hidden="true"></i>GDPR-ready</h3><p>Data export, deletion and regional storage options.</p></div>
+  </div>
+  <p class="trust__note" data-reveal>&gt; AI proposes. Humans confirm. Low-confidence mappings never go live alone.</p>
+ </div>
+</section>
+
+<section class="sec sec--flush" id="pricing" aria-labelledby="pricing-title">
+ <div class="wrap">
+  <p class="eyebrow" data-reveal>[ 08 ] Pricing</p>
+  <h2 class="h2 h2--price display" id="pricing-title" data-reveal>Free sandbox for developers. Simple per-location pricing when you go live.</h2>
+  <div class="plans">
+   <div class="plan" data-reveal="0">
+    <p class="plan__mode">MODE A · SANDBOX</p>
+    <p class="plan__price display">Free</p>
+    <p class="plan__desc">Test POS data, the full API and webhooks. Build before you buy.</p>
+   </div>
+   <div class="plan plan--hot" data-reveal="120">
+    <p class="plan__mode">MODE B · LIVE</p>
+    <p class="plan__price display">Per location</p>
+    <p class="plan__desc">Pay for connected locations. Prices set with our early customers.</p>
+   </div>
+  </div>
+  <a class="btn btn--dark" href="#access" data-reveal>Join the early access list<span aria-hidden="true">→</span></a>
+ </div>
+</section>
+
+<section class="access night" id="access" aria-labelledby="access-title" data-plug>
+ <div class="night-grid" aria-hidden="true"></div>
+ <div class="wrap">
+  <div class="plug" aria-hidden="true">
+   <span class="plug__cable"></span>
+   <span class="plug__head"><span class="plug__body"><i></i></span><span class="plug__prongs"><i></i><i></i></span></span>
+   <span class="socket"><i></i><i></i></span>
+   <span class="plug__label"><i></i><span class="off">NO LINK</span><span class="on">LINK OK</span></span>
+  </div>
+  <h2 class="h-access display" id="access-title">Plug in.<br><span class="accent">Go live.</span></h2>
+  <div class="access__grid">
+   <div>
+    <p class="access__lede">Early access opens in waves. Tell us which POS systems you need.</p>
+    <p class="access__lede">Rather write it yourself? <a href="mailto:contact@posplug.in">contact@posplug.in</a></p>
+   </div>
+   <div>
+    <form class="form" action="mailto:contact@posplug.in" method="post" enctype="text/plain" novalidate aria-label="Early access sign-up" data-form>
+     <div class="field">
+      <label for="f-email">WORK EMAIL</label>
+      <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required aria-describedby="e-email">
+      <span class="field__err" id="e-email" role="alert" hidden></span>
+     </div>
+     <div class="field">
+      <label for="f-company">COMPANY</label>
+      <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Company name" required aria-describedby="e-company">
+      <span class="field__err" id="e-company" role="alert" hidden></span>
+     </div>
+     <div class="field">
+      <label for="f-pos">POS SYSTEMS YOU NEED</label>
+      <input id="f-pos" name="pos" type="text" placeholder="e.g. two cloud POS, one legacy on-prem" required aria-describedby="e-pos">
+      <span class="field__err" id="e-pos" role="alert" hidden></span>
+     </div>
+     <div class="form__foot">
+      <span>No spam. One email when your sandbox is ready.</span>
+      <button class="submit" type="submit">Get early access</button>
+     </div>
+    </form>
+    <div class="done" role="status" hidden data-done>
+     <p class="done__tag"><i class="led led--green-hi led--fast"></i>LINK ESTABLISHED</p>
+     <p class="done__title display">Almost plugged in.</p>
+     <p class="done__text">Your email app opened with the request filled in. Send it and we'll write to <span data-done-email></span> when your sandbox is ready. Nothing opened? Email <a href="mailto:contact@posplug.in">contact@posplug.in</a>.</p>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="foot">
+ <div class="wrap foot__in">
+  <a class="brand" href="#top" aria-label="PosPlug home">
+   <span class="mark mark--sm" aria-hidden="true"><i class="mark__cable"></i><i class="mark__body"></i><span class="mark__prongs"><i></i><i></i></span></span>
+   <span>posplug.in</span>
+  </a>
+  <nav aria-label="Footer">
+   <a href="#product">Product</a>
+   <a href="#how">How it works</a>
+   <a href="#developers">Developers</a>
+   <a href="#pricing">Pricing</a>
+   <a href="#security">Security</a>
+   <a href="https://github.com/POSplugin">GitHub</a>
+  </nav>
+  <span class="foot__copy">© 2026 PosPlug</span>
+ </div>
+</footer>
+</body>
+</html>
