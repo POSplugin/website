@@ -496,14 +496,16 @@
      </div>
      <div class="field">
       <label for="f-company">COMPANY</label>
-      <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Company name" required aria-describedby="e-company">
+      <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Company name" maxlength="200" required aria-describedby="e-company">
       <span class="field__err" id="e-company" role="alert" hidden></span>
      </div>
      <div class="field">
       <label for="f-pos">POS SYSTEMS YOU NEED</label>
-      <input id="f-pos" name="pos" type="text" placeholder="e.g. two cloud POS, one legacy on-prem" required aria-describedby="e-pos">
+      <input id="f-pos" name="pos" type="text" placeholder="e.g. two cloud POS, one legacy on-prem" maxlength="500" required aria-describedby="e-pos">
       <span class="field__err" id="e-pos" role="alert" hidden></span>
      </div>
+     <div class="captcha" data-captcha></div>
+     <p class="field__err form__err" role="alert" hidden data-form-err></p>
      <div class="form__foot">
       <span>No spam. One email when your sandbox is ready.</span>
       <button class="submit" type="submit">Get early access</button>
@@ -511,8 +513,8 @@
     </form>
     <div class="done" role="status" hidden data-done>
      <p class="done__tag"><i class="led led--green-hi led--fast"></i>LINK ESTABLISHED</p>
-     <p class="done__title display">Almost plugged in.</p>
-     <p class="done__text">Your email app opened with the request filled in. Send it and we'll write to <span data-done-email></span> when your sandbox is ready. Nothing opened? Email <a href="mailto:contact@posplug.in">contact@posplug.in</a>.</p>
+     <p class="done__title display">You're plugged in.</p>
+     <p class="done__text">We'll email <span data-done-email></span> when your sandbox is ready.</p>
     </div>
    </div>
   </div>

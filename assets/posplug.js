@@ -216,11 +216,28 @@
   }
 
   /* ---------- 09: early-access form ----------
-     There is no signup backend yet (POSplugin/website issue "Early access
-     backend"). A valid form opens a prefilled email to contact@posplug.in;
-     the page says so instead of pretending the request was stored. */
+     Posts to the waitlist Worker (POSplugin/waitlist-backend, Cratefield
+     harness) at api.posplug.in with a Turnstile token. The answers must be
+     exactly { company, pos }. Without JS the form falls back to its mailto
+     action. */
+  const API = 'https://api.posplug.in/v1/waitlist';
+  const SITEKEY = '0x4AAAAAAFAwe_0TfZb9mdAE';
   const form = $('[data-form]');
   if (form) {
+    const slot = $('[data-captcha]', form);
+    const formErr = $('[data-form-err]', form);
+    const submit = $('.submit', form);
+    let widget = null;
+    const renderCaptcha = () => {
+      if (widget !== null || !window.turnstile || !slot) return;
+      widget = window.turnstile.render(slot, { sitekey: SITEKEY, theme: 'dark', action: 'early-access' });
+    };
+    window.ppTurnstileReady = renderCaptcha;
+    const ts = document.createElement('script');
+    ts.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=ppTurnstileReady';
+    ts.async = true; ts.defer = true;
+    document.head.appendChild(ts);
+    const fail = html => { formErr.innerHTML = html; formErr.hidden = false; };
     const F = ['email', 'company', 'pos'];
     const touched = {};
     const input = k => form.elements[k];
@@ -240,19 +257,37 @@
       input(k).addEventListener('blur', () => { touched[k] = true; show(validate()); });
       input(k).addEventListener('input', () => { if (touched[k]) show(validate()); });
     });
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
+      formErr.hidden = true;
       F.forEach(k => { touched[k] = true; });
       const errs = validate();
       show(errs);
       const first = F.find(k => errs[k]);
       if (first) { input(first).focus(); return; }
+      const token = widget !== null ? window.turnstile.getResponse(widget) : '';
+      if (!token) { fail('! One moment: finish the check above, then send again.'); return; }
       const v = k => input(k).value.trim();
-      const body = `Work email: ${v('email')}\nCompany: ${v('company')}\nPOS systems we need: ${v('pos')}\n`;
-      location.href = 'mailto:contact@posplug.in?subject=' + encodeURIComponent('PosPlugin early access: ' + v('company')) + '&body=' + encodeURIComponent(body);
-      $('[data-done-email]').textContent = v('email');
-      form.hidden = true;
-      $('[data-done]').hidden = false;
+      submit.disabled = true; submit.textContent = 'Plugging in…';
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: v('email'), product: 'posplugin', answers: { company: v('company'), pos: v('pos') }, captchaToken: token })
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        $('[data-done-email]').textContent = v('email');
+        form.hidden = true;
+        $('[data-done]').hidden = false;
+      } catch (err) {
+        const status = Number(err && err.message);
+        fail(status === 429 ? '! Too many tries. Give it a minute, then send again.'
+          : status === 400 ? '! The check expired or failed. Send again.'
+          : '! That didn\'t go through. Try again, or email <a href="mailto:contact@posplug.in">contact@posplug.in</a>.');
+        if (widget !== null) window.turnstile.reset(widget);
+      } finally {
+        submit.disabled = false; submit.textContent = 'Get early access';
+      }
     });
   }
 

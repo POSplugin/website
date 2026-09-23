@@ -534,3 +534,10 @@ main { position: relative; z-index: 1; }
 .no-js .screen__body { height: auto; }
 .no-js .panel + .panel { margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--night-line); }
 .no-js .panel--center, .no-js .live { height: auto; }
+
+/* early-access form: Turnstile slot and the form-level error */
+.captcha { min-height: 65px; }
+.captcha:empty { display: none; }
+.form__err { margin: 0; }
+.form__err a { color: var(--light); }
+.submit[disabled] { opacity: .6; cursor: progress; }

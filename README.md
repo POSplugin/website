@@ -31,9 +31,12 @@ PosPlugin is in early access. The product is being built, so:
 - The API examples (`api.posplug.in/v1/orders`) show the planned shape of the
   API. `llms.txt` says the endpoint is not public yet.
 - Live pricing is **per location, set with early customers**. No numbers.
-- The early-access form has no backend yet. A valid form opens a prefilled
-  email to `contact@posplug.in` and the page says so. It does not pretend the
-  request was stored. The real signup endpoint is tracked in the issues.
+- The early-access form posts to `https://api.posplug.in/v1/waitlist`, the
+  Cratefield-harness waitlist Worker in `POSplugin/waitlist-backend`, with a
+  Turnstile token (widget site key in `assets/posplug.js`) and
+  `answers: {company, pos}`. With JS off, the form falls back to a mailto to
+  `contact@posplug.in`. No confirmation mail is sent yet, so the success copy
+  says we'll email when the sandbox is ready, not "check your inbox".
 
 When something ships, change it in `index.html` and `llms.txt` together.
 
