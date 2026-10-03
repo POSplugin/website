@@ -515,10 +515,28 @@ main { position: relative; z-index: 1; }
 .foot nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
 .foot__copy { font-size: 13px; color: var(--mute); }
 .foot__copy a { color: var(--ink); }
-/* "Built with": generated from tools/built-with.json by tools/built-with.py */
-.built-with { flex-basis: 100%; margin: 0; font-size: 13px; line-height: 1.6; color: var(--mute); overflow-wrap: anywhere; }
-.built-with a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.built-with__planned { color: var(--mute-2); }
+/* "Built with": generated from tools/built-with.json by tools/built-with.py.
+   Square ink-ruled chips like .chip: panel fill, a green LED for live parts.
+   Planned ones follow .chip--new (dashed, no fill) with an unlit LED and a
+   .badge-style PLANNED tag. The whole chip is the link's hit area. The focus
+   ring is ink, not orange: orange on paper is under 3:1. */
+.built-with { flex-basis: 100%; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-size: 12.5px; line-height: 1.3; }
+.bw { position: relative; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 2px 8px; max-width: 100%; min-height: 34px; padding: 6px 12px; border: 1px solid var(--ink); background: var(--panel); color: var(--mute); transition: background-color .15s; }
+.bw::before { content: ""; flex: none; width: 7px; height: 7px; background: var(--green); box-shadow: 0 0 0 1px var(--ink); }
+.built-with .bw__name { color: var(--ink); font-weight: 500; text-decoration: none; overflow-wrap: anywhere; }
+.built-with .bw__name::after { content: ""; position: absolute; inset: -1px; }
+.built-with .bw__name:focus-visible { outline: none; }
+.built-with .bw__name:focus-visible::after { outline: 2px solid var(--ink); outline-offset: 3px; }
+.bw:hover { background: var(--panel-hi); }
+.built-with .bw:hover .bw__name { color: var(--orange-lo); }
+.bw--planned { background: none; border-style: dashed; border-color: var(--ink-3); }
+.bw--planned::before { background: transparent; box-shadow: inset 0 0 0 1px var(--mute); }
+.built-with .bw--planned .bw__name { font-weight: 400; color: var(--ink-2); }
+.bw__tag { padding: 1px 6px; border: 1px solid currentColor; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+.bw__paren { display: none; }
+.bw--source { background: none; border-color: transparent; }
+.bw--source::before { display: none; }
+.bw--source:hover { background: none; border-color: var(--ink-3); }
 
 /* ---------- 404 ---------- */
 .lost { min-height: calc(100vh - var(--header) - 90px); display: flex; align-items: center; padding: 64px 0; }
