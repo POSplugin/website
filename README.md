@@ -77,6 +77,18 @@ yellow `#FFC21A`. Type: Archivo, condensed with `font-stretch` (headings,
 wordmark), and IBM Plex Mono (everything else). Square corners, 2px ink
 borders, hard offset shadows, a 12-column rail grid and film grain.
 
+## The "Built with" strip
+
+The footer line on `index.html` and `404.html` names what PosPlugin is built
+with, each planned entry marked "(planned)". It comes from the Factory Zero
+registry: this venture's `uses` in `Factory-Zero/website` `assets/fz-data.js`,
+published as `https://factory0.ventures/stack.json` and vendored in
+`tools/built-with.json`. `tools/built-with.py` writes it between the
+`built-with` markers; nothing is fetched at runtime. When the registry
+changes, run `python3 tools/built-with.py --pull` and update the matching
+"Built with" section of `llms.txt`; never edit the strip or the JSON by hand.
+`python3 tools/built-with.py --check` fails if a page is stale.
+
 ## Develop
 
 ```sh

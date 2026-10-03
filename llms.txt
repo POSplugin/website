@@ -51,6 +51,11 @@ Designed in, not yet audited (early access):
 - Delivery hubs (e.g. Deliverect, Otter, HubRise): orders and menus for the POS their partners support
 - PosPlugin's difference: AI mapping with a confidence score on every field and human review, full data (orders, payments, catalog, locations) and write-back where the POS allows
 
+## Built with
+- In use today: the Cratefield harness (the early-access waitlist Worker at api.posplug.in) and Cloudflare (hosting)
+- Planned, not in use yet: Owlpost (email; no confirmation mail is sent today), SupportGenius (bug reports), Keep Shipping (deploys)
+- Source: the Factory Zero registry, https://factory0.ventures/stack.json
+
 ## Owner
 PosPlugin is a venture of Factory Zero Pte. Ltd. (https://factory0.ventures/ventures/posplugin/), run as a division of that company.
 

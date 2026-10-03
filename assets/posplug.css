@@ -515,6 +515,10 @@ main { position: relative; z-index: 1; }
 .foot nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
 .foot__copy { font-size: 13px; color: var(--mute); }
 .foot__copy a { color: var(--ink); }
+/* "Built with": generated from tools/built-with.json by tools/built-with.py */
+.built-with { flex-basis: 100%; margin: 0; font-size: 13px; line-height: 1.6; color: var(--mute); overflow-wrap: anywhere; }
+.built-with a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.built-with__planned { color: var(--mute-2); }
 
 /* ---------- 404 ---------- */
 .lost { min-height: calc(100vh - var(--header) - 90px); display: flex; align-items: center; padding: 64px 0; }
