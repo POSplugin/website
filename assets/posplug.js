@@ -253,6 +253,29 @@
       input(k).setAttribute('aria-invalid', bad);
       msg.hidden = !bad; msg.textContent = bad ? '! ' + errs[k] : '';
     });
+    const done = $('[data-done]');
+    const label = $('[data-label]', submit);
+    const busy = on => {
+      submit.disabled = on;
+      if (on) submit.setAttribute('aria-busy', 'true'); else submit.removeAttribute('aria-busy');
+      label.textContent = on ? 'Plugging in…' : 'Get early access';
+    };
+    const badEmail = () => {
+      const msg = $('#e-email');
+      input('email').setAttribute('aria-invalid', 'true');
+      msg.textContent = '! That email address doesn\'t look right. Check it and try again.';
+      msg.hidden = false;
+      input('email').focus();
+    };
+    // "Use a different email": the form comes back as it was, with a fresh
+    // check (the last token was spent).
+    $('[data-again]', done).addEventListener('click', () => {
+      done.hidden = true;
+      form.hidden = false;
+      if (widget !== null) window.turnstile.reset(widget);
+      input('email').focus();
+      input('email').select();
+    });
     F.forEach(k => {
       input(k).addEventListener('blur', () => { touched[k] = true; show(validate()); });
       input(k).addEventListener('input', () => { if (touched[k]) show(validate()); });
@@ -266,27 +289,38 @@
       const first = F.find(k => errs[k]);
       if (first) { input(first).focus(); return; }
       const token = widget !== null ? window.turnstile.getResponse(widget) : '';
-      if (!token) { fail('! One moment: finish the check above, then send again.'); return; }
+      if (!token) { fail('! One more step: complete the human check above, then send again.'); return; }
       const v = k => input(k).value.trim();
-      submit.disabled = true; submit.textContent = 'Plugging in…';
+      busy(true);
       try {
         const res = await fetch(API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: v('email'), product: 'posplugin', answers: { company: v('company'), pos: v('pos') }, captchaToken: token })
         });
-        if (!res.ok) throw new Error(String(res.status));
+        if (!res.ok) {
+          const p = await res.json().catch(() => null);
+          const err = new Error(String(res.status));
+          err.type = p && typeof p.type === 'string' ? p.type : '';
+          err.detail = p && typeof p.detail === 'string' ? p.detail : '';
+          throw err;
+        }
+        if (widget !== null) window.turnstile.reset(widget);
         $('[data-done-email]').textContent = v('email');
         form.hidden = true;
-        $('[data-done]').hidden = false;
+        done.hidden = false;
+        done.focus();
       } catch (err) {
         const status = Number(err && err.message);
-        fail(status === 429 ? '! Too many tries. Give it a minute, then send again.'
-          : status === 400 ? '! The check expired or failed. Send again.'
-          : '! That didn\'t go through. Try again, or email <a href="mailto:contact@posplug.in">contact@posplug.in</a>.');
+        const type = (err && err.type) || '';
         if (widget !== null) window.turnstile.reset(widget);
+        if (/\/validation-failed$/.test(type) && /^email/.test(err.detail || '')) badEmail();
+        else fail(/\/captcha-failed$/.test(type) ? '! The human check didn\'t go through. It\'s been reset — complete it again, then send.'
+          : status === 429 ? '! Too many tries. Wait a minute, then try again.'
+          : status === 400 ? '! Something in the form didn\'t look right. Check the fields and try again.'
+          : '! We couldn\'t reach the waitlist just now. Try again in a moment, or email <a href="mailto:contact@posplug.in">contact@posplug.in</a>.');
       } finally {
-        submit.disabled = false; submit.textContent = 'Get early access';
+        busy(false);
       }
     });
   }

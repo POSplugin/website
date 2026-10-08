@@ -35,8 +35,10 @@ PosPlugin is in early access. The product is being built, so:
   Cratefield-harness waitlist Worker in `POSplugin/waitlist-backend`, with a
   Turnstile token (widget site key in `assets/posplug.js`) and
   `answers: {company, pos}`. With JS off, the form falls back to a mailto to
-  `contact@posplug.in`. No confirmation mail is sent yet, so the success copy
-  says we'll email when the sandbox is ready, not "check your inbox".
+  `contact@posplug.in`. The Worker mails a double opt-in link, so a join ends
+  on a "Check your inbox" panel (names the address, Spam/Promotions hint,
+  "already confirmed? you're already on the list", "Use a different email").
+  The API answers the same `202` whatever the address's state, by design.
 
 When something ships, change it in `index.html` and `llms.txt` together.
 

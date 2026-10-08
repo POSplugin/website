@@ -510,13 +510,15 @@
      <p class="field__err form__err" role="alert" hidden data-form-err></p>
      <div class="form__foot">
       <span>No spam. One email when your sandbox is ready.</span>
-      <button class="submit" type="submit">Get early access</button>
+      <button class="submit" type="submit"><span class="spin" aria-hidden="true"></span><span data-label>Get early access</span></button>
      </div>
     </form>
-    <div class="done" role="status" hidden data-done>
-     <p class="done__tag"><i class="led led--green-hi led--fast"></i>LINK ESTABLISHED</p>
-     <p class="done__title display">You're plugged in.</p>
-     <p class="done__text">We'll email <span data-done-email></span> when your sandbox is ready.</p>
+    <div class="done" role="status" aria-live="polite" tabindex="-1" hidden data-done>
+     <p class="done__tag"><i class="led led--green-hi led--fast"></i>CONFIRMATION SENT</p>
+     <p class="done__title display">Check your inbox.</p>
+     <p class="done__text">We sent a confirmation link to <strong data-done-email></strong>. Click it to hold your place on the PosPlugin waitlist.</p>
+     <p class="done__small">It can take a minute — check Spam or Promotions if it isn't there. Already confirmed before? Then you're already on the list; nothing more to do.</p>
+     <p class="done__small"><button class="done__again" type="button" data-again>Use a different email</button> · Still nothing? Email <a href="mailto:contact@posplug.in">contact@posplug.in</a>.</p>
     </div>
    </div>
   </div>

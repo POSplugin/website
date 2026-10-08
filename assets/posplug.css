@@ -507,6 +507,16 @@ main { position: relative; z-index: 1; }
 .done__title { margin-top: 14px !important; font-size: 44px; line-height: .95; }
 .done__text { margin-top: 12px !important; font-size: 16px; line-height: 1.55; color: var(--light-2); }
 .done__text a { color: var(--light); }
+.done { outline: none; }
+.done__text strong { color: var(--light); font-weight: 700; overflow-wrap: anywhere; }
+.done__small { margin-top: 12px !important; font-size: 14px; line-height: 1.5; color: var(--light-2); opacity: .85; }
+.done__small a { color: var(--light); }
+.done__again { padding: 0; border: 0; background: none; font: inherit; color: var(--green-hi); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.submit { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.submit .spin { display: none; width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: pp-spin .7s linear infinite; }
+.submit[aria-busy="true"] .spin { display: inline-block; }
+@keyframes pp-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .submit[aria-busy="true"] .spin { display: none; } }
 
 /* ---------- footer ---------- */
 .foot { position: relative; z-index: 1; border-top: 2px solid var(--ink); background: var(--paper); }
