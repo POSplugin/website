@@ -50,6 +50,7 @@ When something ships, change it in `index.html` and `llms.txt` together.
 | `assets/posplug.css`, `assets/posplug.js` | The one stylesheet and the one script. The page reads fine with JS off (every setup step is shown, stacked) |
 | `404.html` | Cloudflare Pages serves it for unknown paths, so they return 404 instead of the home page with 200 |
 | `llms.txt`, `robots.txt`, `sitemap.xml` | Machine-readable summary (status, how it works, API shape, pricing), crawler rules, sitemap |
+| `COPY.md` | Every claim, caption and credit on the site (including the promo film), with its source |
 | `_headers`, `_redirects` | Security and cache headers; `/github` and `/source` short links |
 | `.well-known/security.txt` | Where to report a vulnerability |
 
