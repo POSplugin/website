@@ -21,6 +21,13 @@
 /assets/*.svg
   Cache-Control: public, max-age=604800
 
+# Films are not content-hashed, so they get a day, not a year.
+/assets/films/*
+  Cache-Control: public, max-age=86400
+
+/assets/films/*.mp4
+  Content-Type: video/mp4
+
 /llms.txt
   Cache-Control: public, max-age=3600
   Content-Type: text/plain; charset=utf-8
