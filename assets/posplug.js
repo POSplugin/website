@@ -341,3 +341,9 @@
     });
   }
 })();
+
+// Hero "Watch the film": jump to the film and start it (the click is the user gesture that allows sound).
+document.querySelectorAll('[data-play-film]').forEach(a => a.addEventListener('click', () => {
+  const v = document.querySelector('#film video');
+  if (v) v.play().catch(() => {});
+}));
