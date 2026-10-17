@@ -8,7 +8,7 @@ Tagline: Any POS. One API. Live in 30 minutes.
 Early access, not generally available. The website and the early-access list are live (the list runs on a Cratefield-harness Worker at api.posplug.in). The product (connectors, AI mapping engine, unified API, sandbox) is being built; access opens in waves. First vertical: restaurants. The API examples on the site (api.posplug.in/v1/...) show the planned shape of the API; the endpoint is not public yet.
 
 ## Film
-A 39-second promo film (MP4, 1920x1080, with a poster frame) is on the home page after the hero: https://posplug.in/assets/films/posplug-promo.mp4. It is illustrative: its screens use sample data, and it shows the 30-minute setup as a target on supported POS, not a measurement.
+A 39-second promo film (MP4, 1920x1080, with a poster frame) is on the home page after the hero: https://posplug.in/assets/films/posplug-promo-v2.mp4. It is illustrative: its screens use sample data, and it shows the 30-minute setup as a target on supported POS, not a measurement.
 
 ## Who it is for
 - SaaS vendors (loyalty, delivery, accounting, BI) that need data from many merchants' POS systems: one API instead of one integration per POS
