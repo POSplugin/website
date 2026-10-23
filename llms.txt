@@ -55,7 +55,7 @@ Designed in, not yet audited (early access):
 - PosPlugin's difference: AI mapping with a confidence score on every field and human review, full data (orders, payments, catalog, locations) and write-back where the POS allows
 
 ## Built with
-- In use today: the Cratefield harness (the early-access waitlist Worker at api.posplug.in) and Cloudflare (hosting)
+- In use today: the Cratefield harness (the early-access waitlist Worker at api.posplug.in), Google Fonts (typefaces: Archivo, IBM Plex Mono), and Cloudflare (hosting)
 - Planned, not in use yet: Owlpost (email; no confirmation mail is sent today), SupportGenius (bug reports), Keep Shipping (deploys)
 - Source: the Factory Zero registry, https://factory0.ventures/stack.json
 

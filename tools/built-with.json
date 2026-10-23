@@ -45,6 +45,16 @@
       "note": "Every venture site and Worker deployed from the Keep Shipping console."
     },
     {
+      "id": "google-fonts",
+      "name": "Google Fonts",
+      "kind": "third-party",
+      "url": "https://fonts.google.com",
+      "role": "fonts",
+      "phrase": "Typefaces from",
+      "status": "live",
+      "note": "The site’s typefaces (Archivo, IBM Plex Mono), loaded from Google."
+    },
+    {
       "id": "cloudflare",
       "name": "Cloudflare",
       "kind": "third-party",
