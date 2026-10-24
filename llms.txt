@@ -2,10 +2,10 @@
 
 > PosPlugin is an integration layer for point-of-sale (POS) systems. It connects to a merchant's POS, uses AI to map the POS's fields to one clean data model, and serves the result as one REST API plus webhooks, so software teams connect new merchants in minutes instead of building one integration per POS.
 
-Tagline: Any POS. One API. Live in 30 minutes.
+Tagline: Any POS. One API. Target: live in 30 minutes.
 
 ## Status
-Early access, not generally available. The website and the early-access list are live (the list runs on a Cratefield-harness Worker at api.posplug.in). The product (connectors, AI mapping engine, unified API, sandbox) is being built; access opens in waves. First vertical: restaurants. The API examples on the site (api.posplug.in/v1/...) show the planned shape of the API; the endpoint is not public yet.
+In development, not generally available. The website and the early-access list are live (the list runs on a Cratefield-harness Worker at api.posplug.in). The product (connectors, AI mapping engine, unified API, sandbox) is being built; access opens in waves. First vertical: restaurants. The API examples on the site (api.posplug.in/v1/...) show the planned shape of the API; the endpoint is not public yet.
 
 ## Film
 A 39-second promo film (MP4, 1920x1080, with a poster frame) is on the home page after the hero: https://posplug.in/assets/films/posplug-promo-v2.mp4. It is illustrative: its screens use sample data, and it shows the 30-minute setup as a target on supported POS, not a measurement.
@@ -37,7 +37,7 @@ curl "https://api.posplug.in/v1/orders?location_id=loc_8f2k" -H "Authorization: 
 Returns orders in one shape whichever POS is behind them: id, location_id, channel, status, line_items (name, qty, unit_price in minor units), tax, tip, total, currency, pos (type, ref), created_at.
 
 ## Security
-Designed in, not yet audited (early access):
+Designed in, not yet audited (in development):
 - No card numbers: PosPlugin never receives full card numbers, only brand and last four as the POS returns them; designed to stay out of PCI card-data scope
 - Encrypted in transit and at rest; POS credentials kept in a secrets vault
 - Per-tenant isolation
@@ -45,7 +45,7 @@ Designed in, not yet audited (early access):
 - Built for GDPR: data export, deletion, regional storage options, and a DPA listing every sub-processor
 
 ## Pricing
-- Sandbox: free (test POS data, the full API and webhooks)
+- Sandbox: free at launch, planned (test POS data, the full API and webhooks)
 - Live: per connected location; prices are being set with early customers
 
 ## Compared with alternatives
